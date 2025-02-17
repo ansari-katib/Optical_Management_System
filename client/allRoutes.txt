@@ -1,0 +1,49 @@
+<!-- 
+
+& Home page Routes :
+
+* top Navbar Routes :
+
+http://localhost:5173/eye-testing 
+
+http://localhost:5173/sign-in 
+
+http://localhost:5173/shipping
+
+http://localhost:5173/find-store
+
+
+* Bottom Navbar Routes : 
+
+http://localhost:5173/eye-glasses 
+
+http://localhost:5173/sun-glasses
+
+http://localhost:5173/power-glasses
+
+http://localhost:5173/computer-glasses
+
+http://localhost:5173/reading-glasses
+
+http://localhost:5173/contact-lenses
+
+http://localhost:5173/accessories
+
+http://localhost:5173/brand
+
+
+* Footer Routes :
+
+http://localhost:5173/about-us
+
+http://localhost:5173/blog
+
+http://localhost:5173/term-and-condition
+
+http://localhost:5173/our-policies
+
+
+* Brands : 
+
+
+ -->
