@@ -81,6 +81,18 @@ const GenerateInvoice = () => {
     };
 
     const handleGenerateInvoice = () => {
+        // Validate that all customer details and products are filled in
+        if (!customerDetails.customer || !customerDetails.email || !customerDetails.contact) {
+            toast.error("Please fill in all customer details.");
+            return; // Prevent submission if any field is empty
+        }
+    
+        if (selectedProducts.length === 0) {
+            toast.error("Please add at least one product.");
+            return; // Prevent submission if no products are added
+        }
+    
+        // Create invoice data
         const invoiceData = {
             customerDetails,
             selectedProducts,
@@ -88,8 +100,9 @@ const GenerateInvoice = () => {
             offer,
             total: calculateTotal(),
         };
-
-        fetch("http://localhost:5000/api/create-order", {
+    
+        // Use the save-invoice API
+        fetch("http://localhost:5000/api/save-invoice", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(invoiceData),
@@ -97,14 +110,17 @@ const GenerateInvoice = () => {
             .then((res) => res.json())
             .then((data) => {
                 console.log("Invoice Response:", data); // Debugging
-                if (data._id) {
-                    toast.success(`Invoice generated! ID: ${data._id}`);
-                } else {
-                    toast.error("Invoice generated but missing ID!");
-                }
+                toast.success(`Invoice generated successfully`);
+                // Reset the form after successful submission
+                setCustomerDetails({ customer: "", email: "", contact: "" });
+                setSelectedProducts([]);
+                setSearchQuery("");
+                setGst(0);
+                setOffer(0);
             })
             .catch((error) => toast.error("Error generating invoice. Please try again later."));
     };
+    
 
     return (
         <div className="h-screen flex flex-col">

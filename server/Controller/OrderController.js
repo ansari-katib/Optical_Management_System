@@ -13,7 +13,6 @@ const createOrder = async (req, res) => {
 }
 };
 
-
 // Get all orders
 const getOrders = async (req, res) => {
   try {

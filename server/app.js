@@ -43,7 +43,10 @@ const {
   updateUser
 } = require("./Controller/UserController");
 
-const { sendInvoiceEmail } = require("./Controller/InvoiceController");
+const { 
+  InvoiceInfo,
+  saveInvoiceData
+ } = require("./Controller/InvoiceController");
 
 
 const app = express();
@@ -89,7 +92,9 @@ app.put("/api/update-appointment/:id", updateAppointment);
 app.delete("/api/delete-appointment/:id", deleteAppointment);
 
 // invoice API
-app.get("/api/invoice/:orderId", sendInvoiceEmail);
+// app.get("/api/invoice/:orderId", sendInvoiceEmail);
+app.get("/api/invoice-data",InvoiceInfo);
+app.post("/api/save-invoice",saveInvoiceData);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port: ${PORT}`);

@@ -41,21 +41,21 @@ const AdminNavbar = () => {
 
   const menuSections = [
     {
-      ParentPage: { text: "Customer" , path:"/admin/customers"},
+      ParentPage: { text: "Customer", path: "/admin/customers" },
       items: [
         { text: "View Customers", icon: <Visibility />, path: "/admin/customers/view" },
         { text: "Add Customer", icon: <Add />, path: "/admin/customers/add" }
       ]
     },
     {
-      ParentPage:{text:"Inventory" , path:"/admin/inventory"},
+      ParentPage: { text: "Inventory", path: "/admin/inventory" },
       items: [
         { text: "View Inventory", icon: <Visibility />, path: "/admin/inventory/view" },
         { text: "Add Inventory", icon: <Add />, path: "/admin/inventory/add" }
       ]
     },
     {
-      ParentPage: {text:"Orders" , path:"/admin/orders"},
+      ParentPage: { text: "Orders", path: "/admin/orders" },
       items: [
         { text: "View Orders", icon: <Visibility />, path: "/admin/orders/view" },
       ]
@@ -97,12 +97,11 @@ const AdminNavbar = () => {
               ))}
 
 
-
               {/* Dynamic Submenus */}
               {menuSections.map((section, index) => (
                 <Box key={index}>
                   <MenuItem onClick={() => setSubmenuOpen(submenuOpen === section.label ? null : section.label)}>
-                    <ListItemText primary={section.label} />
+                    <ListItemText primary={section.ParentPage.text} />
                   </MenuItem>
 
                   {submenuOpen === section.label &&
@@ -111,7 +110,7 @@ const AdminNavbar = () => {
                         key={subIndex}
                         sx={{
                           pl: 4,
-                          backgroundColor: isActiveRoute(subItem.path) ? "rgba(255, 255, 255, 0.1)" : "transparent",
+                          backgroundColor: isActiveRoute(subItem.path) ? "gray" : "green", // Active item = gray, inactive item = green
                         }}
                         onClick={handleMenuClose}
                       >
@@ -121,6 +120,7 @@ const AdminNavbar = () => {
                     ))}
                 </Box>
               ))}
+
             </Menu>
           </>
         )}
@@ -132,7 +132,7 @@ const AdminNavbar = () => {
               dashboard.map((item, index) => (
                 <div
                   key={index}
-                  className="text-white p-2 rounded-lg"
+                  className="text-white p-2 mr-2 rounded-lg"
                   style={{
                     backgroundColor: isActiveRoute(item.path) ? "gray" : "green",
                   }}
@@ -143,15 +143,21 @@ const AdminNavbar = () => {
             }
 
             {menuSections.map((section, index) => (
-              <div key={index} className="flex p-2 bg-gray-400 m-2 rounded-lg" >
-                <a href={section.ParentPage.path} >{section.ParentPage.text}</a>
+                <div
+                key={index}
+                className="text-white p-2 m-2 rounded-lg"
+                style={{
+                  backgroundColor: isActiveRoute(section.ParentPage.path) ? "gray" : "green",
+                }}
+              >                
+              <a href={section.ParentPage.path} >{section.ParentPage.text}</a>
               </div>
             ))}
 
             {mainItems.map((item, index) => (
               <div
                 key={index}
-                className="bg-yellow-500 text-white p-2 rounded-lg"
+                className="bg-yellow-500 text-white p-2 ml-2 rounded-lg"
                 style={{
                   backgroundColor: isActiveRoute(item.path) ? "gray" : "green",
                 }}

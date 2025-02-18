@@ -11,10 +11,10 @@ const CustomerSchema = new mongoose.Schema({
   contact: { type: String, required: true },
   email: { type: String, required: true },
   address: { type: String },
-  lastVisit: { type: Date },
+  lastVisit: { type: Date , default:Date.now },
   prescription: {
-    rightEye: { type: PrescriptionSchema, required: true },
-    leftEye: { type: PrescriptionSchema, required: true },
+    rightEye: { type: PrescriptionSchema},
+    leftEye: { type: PrescriptionSchema },
   },
 });
 

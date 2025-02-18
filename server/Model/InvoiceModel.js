@@ -15,7 +15,7 @@ const InvoiceSchema = new mongoose.Schema({
     ],
     gst: Number,
     offer: Number,
-    total: Number,
+    total:{type: Number , require : true },
 }, { timestamps: true });
 
 const Invoice = mongoose.model("Invoice", InvoiceSchema);
